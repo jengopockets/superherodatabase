@@ -7,10 +7,10 @@ export const LOADING_FAILURE = "LOADING_FAILURE";
 export const loadingHero = (url) => dispatch => {
     dispatch ({type: LOADING_START})
     console.log(url);
-    axios.get(`https://www.superheroapi.com/api.php/3336280869721363/search/Spider-Man`)
+    axios.get(`https://www.superheroapi.com/api.php/3336280869721363/search/${url}`)
     .then(response => {
         console.log(response.data.results);
-        dispatch({type: LOADING_SUCCESS})
+        dispatch({type: LOADING_SUCCESS, payload:response.data.results})
     })
     .catch(err => {
         dispatch({type: LOADING_FAILURE})
